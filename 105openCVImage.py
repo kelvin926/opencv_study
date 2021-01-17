@@ -25,7 +25,7 @@ cv2.imshow("Rotated clockwise degrees", rotated)
 ratio = 200.0 / width
 dimension = (200, int(height * ratio))
 
-resized = cv2.resize(img, dimension     , interpolation = cv2.INTER_AREA)
+resized = cv2.resize(img, dimension, interpolation = cv2.INTER_AREA)
 cv2.imshow("Resized", resized)
 
 flipped = cv2.flip(img, 1)
