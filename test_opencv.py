@@ -57,19 +57,49 @@ cv2.imshow("DRAW", img)
 cv2.waitKey(0)
 cv2.destroyAllWindows()
 
-# [1단계] 이미지를 위로,아래로,양옆으로 움직이게 해서 출력. 
-move = np.float32([[1, 0, 100], [0, 1, 100]])
-moved = cv2.warpAffine(img, move, (width, height))
-cv2.imshow("아래로: +, 위로: - and 오른쪽: +, 왼쪽 - ", moved)
+# [1단계] 이미지를 위로,아래로,양옆으로 움직이게 해서 출력.
+move = np.float32([[1, 0, +100], [0, 1, +100]]) # 변환 행렬. 좌우/상하
+moved = cv2.warpAffine(img, move, (yujin_width, yujin_height)) 
+cv2.imshow("right: +, left - down: +, up: - ", moved)
+
+cv2.waitKey(0)
+cv2.destroyAllWindows() 
+
+# [1단계] 이미지를 회전. 이미지를 축소, 이미지를 확대, 이미지를 반전.
+img2 = cv2.imread("yujin.jpg") #이미지 재 로딩 
+
+rotate = cv2.getRotationMatrix2D(center, -90, 1.0)
+rotated = cv2.warpAffine(img2, rotate, (yujin_height, yujin_width))
+cv2.imshow("90 degree clockwise", rotated)
+cv2.waitKey(0)
+
+def zoomdef(want_height):
+    ratio = want_height/img.shape[0]
+    zoom = (int(img.shape[1]*ratio), int(want_height)) #가로x세로
+    return zoom
+
+print(zoomdef(480))
+print(zoomdef(720))
+
+fhd = cv2.resize(img2, (zoomdef(1080)), interpolation=cv2.INTER_AREA)
+cv2.imshow("FHD downscale", fhd)
+cv2.waitKey(0)
+
+qhd = cv2.resize(img2, zoomdef(1440), interpolation=cv2.INTER_NEAREST)
+cv2.imshow("QHD upscale", qhd)
+
+cv2.waitKey(0)
+cv2.destroyAllWindows() 
+
+# [1단계] 마스크를 만들고, 마스크와 마스크된 사진 출력.
+
+
+
 
 
 cv2.waitKey(0)
 cv2.destroyAllWindows() 
 
-# 여기서부터 ㄲㄲㄲㄲㄲㄲㄲㄲㄲㄲㄲㄲㄲㄱ
-
-# [1단계] 이미지를 회전. 이미지를 축소, 이미지를 확대.
-# [1단계] 마스크를 만들고, 마스크와 마스크된 사진 출력.
 # [1단계] 각각의 색 영역별로 출력. 여러 필터 적용해서 출력.
 # [1단계] 각각의 색 영역별로 출력한 상태에 더 보기 편하도록 색 입혀서 출력.
 # [1단계] 나눈 색 사진들을 조합하여 원본과 같은 사진 출력.
