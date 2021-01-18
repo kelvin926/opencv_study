@@ -42,8 +42,8 @@ cv2.imshow("dotted", img)
 
 cv2.waitKey(0)
 cv2.destroyAllWindows()
-# [1단계] 사각형, 원, 선, 텍스트 각각 하나씩 그려서 출력.
 
+# [1단계] 사각형, 원, 선, 텍스트 각각 하나씩 그려서 출력.
 cv2.rectangle(img, (100,100), (200,200), (255,0,255), thickness=5)
 
 cv2.circle(img, (250,250), 50, (0,255,255), thickness=5)
@@ -56,7 +56,17 @@ cv2.imshow("DRAW", img)
 
 cv2.waitKey(0)
 cv2.destroyAllWindows()
+
 # [1단계] 이미지를 위로,아래로,양옆으로 움직이게 해서 출력. 
+move = np.float32([[1, 0, 100], [0, 1, 100]])
+moved = cv2.warpAffine(img, move, (width, height))
+cv2.imshow("아래로: +, 위로: - and 오른쪽: +, 왼쪽 - ", moved)
+
+
+cv2.waitKey(0)
+cv2.destroyAllWindows() 
+
+# 여기서부터 ㄲㄲㄲㄲㄲㄲㄲㄲㄲㄲㄲㄲㄲㄱ
 
 # [1단계] 이미지를 회전. 이미지를 축소, 이미지를 확대.
 # [1단계] 마스크를 만들고, 마스크와 마스크된 사진 출력.
