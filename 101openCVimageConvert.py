@@ -11,5 +11,5 @@ gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 cv2.imshow("nomadProgramer", img) #이미지 쇼 (윈도우에)
 cv2.imshow("nomadProgramer - gray", gray) #이미지 쇼 (윈도우에)
  
-cv2.waitKey(0) #아무 키나 입력 (그 전까지는 아무런 입력 인식 Xㅌ)
+cv2.waitKey(0) #아무 키나 입력 (그 전까지는 아무런 진행 X)
 cv2.destroyAllWindows() #활성화 된 윈도우 창 제거
