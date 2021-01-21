@@ -67,10 +67,10 @@ cv2.destroyAllWindows()
 
 # [1단계] 이미지를 회전. 이미지를 축소, 이미지를 확대, 이미지를 반전.
 
-img2 = cv2.imread("yujin.jpg") #이미지 재 로딩 -> 변수: "img2"
+img = cv2.imread("yujin.jpg") #이미지 재 로딩
 
 rotate = cv2.getRotationMatrix2D(center, -90, 1.0)
-rotated = cv2.warpAffine(img2, rotate, (yujin_height, yujin_width))
+rotated = cv2.warpAffine(img, rotate, (yujin_height, yujin_width))
 cv2.imshow("90 degree clockwise", rotated)
 cv2.waitKey(0)
 
@@ -83,17 +83,17 @@ def zoomdef(want_height): # 세로 크기 요청에 따라 원본 비율 그대�
 # print(zoomdef(720)) #Debug
 
 want_height = 1080
-fhd = cv2.resize(img2, zoomdef(want_height), interpolation=cv2.INTER_AREA)
+fhd = cv2.resize(img, zoomdef(want_height), interpolation=cv2.INTER_AREA)
 cv2.imshow("FHD downscale", fhd)
 cv2.waitKey(0)
 
 want_height = 1440
-qhd = cv2.resize(img2, zoomdef(want_height), interpolation=cv2.INTER_NEAREST)
+qhd = cv2.resize(img, zoomdef(want_height), interpolation=cv2.INTER_NEAREST)
 cv2.imshow("QHD upscale", qhd)
 cv2.waitKey(0)
 
 
-flipped = cv2.flip(img2, 1)
+flipped = cv2.flip(img, 1)
 cv2.imshow("flipped", flipped)
 
 cv2.waitKey(0)
@@ -111,7 +111,7 @@ cv2.circle(mask, zoom_center(want_height), 100, (255,255,255), -1)
 
 cv2.imshow("mask", mask)
 
-masked = cv2.bitwise_and(img2, img2, mask = mask)
+masked = cv2.bitwise_and(img, img, mask = mask)
 
 cv2.imshow("masked", masked)
 
@@ -119,24 +119,43 @@ cv2.waitKey(0)
 cv2.destroyAllWindows() 
 
 # [1단계] 각각의 색 영역별로 출력. 여러 필터 적용해서 출력.
-(Blue, Green, Red) = cv2.split(img2)
+(Blue, Green, Red) = cv2.split(img)
 cv2.imshow("Blue", Blue)
 cv2.imshow("Green", Green)
 cv2.imshow("Red", Red)
 
 cv2.waitKey(0)
 cv2.destroyAllWindows() 
+# ------------------------------
+img = cv2.imread('yujin.jpg') #이미지 재 로딩
 
-# [1단계] 각각의 색 영역별로 출력한 상태에 더 보기 편하도록 색 입혀서 출력.
+resize = cv2.resize(img, zoomdef(480))
 
+gray = cv2.cvtColor(resize, cv2.COLOR_BGR2GRAY)
 
+hsv = cv2.cvtColor(resize, cv2.COLOR_BGR2HSV)
+
+lab = cv2.cvtColor(resize, cv2.COLOR_BGR2LAB)
+
+cv2.imshow('gray', gray)
+cv2.imshow('hsv', hsv)
+cv2.imshow('lab', lab)
+
+cv2.waitKey(0)
+cv2.destroyAllWindows() 
+
+# [1단계] 각각의 색 영역별로 출력한 상태에 더 보기 편하도록 색 입혀서 출력. 
+zeros = np.zeros(img.shape[:2], dtype = "uint8")
+
+cv2.imshow('blue', cv2.resize(cv2.merge([Blue, zeros, zeros]), zoomdef(480)))
+cv2.imshow('green', cv2.resize(cv2.merge([zeros, Green, zeros]), zoomdef(480)))
+cv2.imshow('red', cv2.resize(cv2.merge([zeros, zeros, Red]), zoomdef(480)))
 
 cv2.waitKey(0)
 cv2.destroyAllWindows() 
 
 # [1단계] 나눈 색 사진들을 조합하여 원본과 같은 사진 출력.
-
-
+cv2.imshow('BGR', cv2.resize(cv2.merge((Blue,Green,Red)), zoomdef(480)))
 
 cv2.waitKey(0)
 cv2.destroyAllWindows() 
