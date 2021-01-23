@@ -30,8 +30,8 @@ print("channels: {}".format(img.shape[2]))
 
 cv2.imshow("Original Image", img)
 
-face_cascade_name = '../opencv/data/haarcascades/haarcascade_frontalface_alt.xml'
-eyes_cascade_name = '../opencv/data/haarcascades/haarcascade_eye_tree_eyeglasses.xml'
+face_cascade_name = '../opencv/haarcascades/haarcascade_frontalface_alt.xml'
+eyes_cascade_name = '../opencv/haarcascades/haarcascade_eye_tree_eyeglasses.xml'
 
 face_cascade = cv2.CascadeClassifier()
 eyes_cascade = cv2.CascadeClassifier()
