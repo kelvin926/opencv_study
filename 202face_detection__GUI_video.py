@@ -5,8 +5,8 @@ from PIL import Image
 from PIL import ImageTk
 from tkinter import filedialog
 
-face_cascade_name = '../opencv/data/haarcascades/haarcascade_frontalface_alt.xml'
-eyes_cascade_name = '../opencv/data/haarcascades/haarcascade_eye_tree_eyeglasses.xml'
+face_cascade_name = '../opencv/haarcascades/haarcascade_frontalface_alt.xml'
+eyes_cascade_name = '../opencv/haarcascades/haarcascade_eye_tree_eyeglasses.xml'
 file_name = 'video/obama_01.mp4'
 title_name = 'Haar cascade object detection Video'
 frame_width = 500
