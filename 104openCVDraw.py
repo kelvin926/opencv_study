@@ -13,8 +13,7 @@ print("색 채널: {}".format(img.shape[2]))
 cv2.imshow("nomadProgramer", img)
 
 (b, g, r) = img[0, 0]
-print("Pixel at (0, 0) - Red: {}, Green: {}, Blue: {}".format(r,
-g, b))
+print("Pixel at (0, 0) - Red: {}, Green: {}, Blue: {}".format(r, g, b))
 
 dot = img[50:100, 50:100]
 

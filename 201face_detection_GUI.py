@@ -16,7 +16,7 @@ def selectFile():
     print('File name : ', file_name) #파일 리딩 부분.
     read_image = cv2.imread(file_name)
     (height, width) = read_image.shape[:2] #세로, 가로
-    frameSize = int(sizeSpin.get()) #조절바로 받은 값.
+    frameSize = int(sizeSpin.get()) #조절바로 받은 값
     ratio = frameSize / width #비율 
     dimension = (frameSize, int(height * ratio))
     read_image = cv2.resize(read_image, dimension, interpolation = cv2.INTER_AREA) #리사이징

@@ -15,7 +15,7 @@ center = (width // 2, height // 2) # 몫을 반환하는 나누셈, 센터를 �
 
 cv2.imshow("nomadProgramer", img)
 
-move = np.float32([[1, 0, 100], [0, 1, 100]]) # 넘파이 행렬.(수치 해석을 위함.) float32 : 부동소수형 / 앞 부분은 위,아래 조정 값 (+:아래) / 뒷부분은 양 옆 조정 값.(+:오른쪽)
+move = np.float32([[1, 0, 100],[0, 1, 100]]) # 넘파이 행렬.(수치 해석을 위함.) float32 : 부동소수형 / 앞 부분은 위,아래 조정 값 (+:아래) / 뒷부분은 양 옆 조정 값.(+:오른쪽)
 # 2X3의 이차원 행렬. [[1,0,x축이동],[0,1,y축이동]] 형태의 float32 type의 numpy array.
 
 moved = cv2.warpAffine(img, move, (width, height)) # (이미지, 변환 행렬(move), 출력 이미지 사이즈.) warpAffine : 이미지의 위치 변경하는 변환.
